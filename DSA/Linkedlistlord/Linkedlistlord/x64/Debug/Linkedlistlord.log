@@ -1,0 +1,3 @@
+﻿  Linkedlistlord.cpp
+C:\Users\chann\Desktop\Code\DSA\Linkedlistlord\Linkedlistlord\Linkedlistlord.cpp(79,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Linkedlistlord.vcxproj -> C:\Users\chann\Desktop\Code\DSA\Linkedlistlord\x64\Debug\Linkedlistlord.exe

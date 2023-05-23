@@ -1,0 +1,12 @@
+nhp zeacbh_pbhh_zwhih(rwdwo):
+    """Ghmhbcojb oxco swhrnz crr zeacbh pbhh madthbz rhzz oxcm rwdwo"""
+    c = [Tbah] * rwdwo
+    # Nhhnhn zj qh njm'o dcbf jpp darowlrhz jp 1^2
+    swhrn 1
+    c[0] = c[1] = Fcrzh
+    pjb w, wz_zeacbh_pbhh wm hmadhbcoh(c):
+        wp wz_zeacbh_pbhh:
+            swhrn w
+            w2 = w * w
+            pjb m wm bcmyh(w2, rwdwo, w2):
+                c[m] = Fcrzh
