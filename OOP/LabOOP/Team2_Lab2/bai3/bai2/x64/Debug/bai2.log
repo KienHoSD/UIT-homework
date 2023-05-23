@@ -1,0 +1,8 @@
+﻿  bai2.cpp
+bai2.obj : error LNK2019: unresolved external symbol line referenced in function "public: void __cdecl Triangle::VeTamGiac(void)" (?VeTamGiac@Triangle@@QEAAXXZ)
+bai2.obj : error LNK2019: unresolved external symbol setcolor referenced in function "public: void __cdecl Triangle::VeTamGiac(void)" (?VeTamGiac@Triangle@@QEAAXXZ)
+bai2.obj : error LNK2019: unresolved external symbol setlinestyle referenced in function "public: void __cdecl Triangle::VeTamGiac(void)" (?VeTamGiac@Triangle@@QEAAXXZ)
+bai2.obj : error LNK2019: unresolved external symbol closegraph referenced in function "public: void __cdecl Triangle::VeTamGiac(void)" (?VeTamGiac@Triangle@@QEAAXXZ)
+bai2.obj : error LNK2019: unresolved external symbol initwindow referenced in function "public: void __cdecl Triangle::VeTamGiac(void)" (?VeTamGiac@Triangle@@QEAAXXZ)
+graphics.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\chann\Desktop\Code\LabOOP\Team2_Lab2\bai2\x64\Debug\bai2.exe : fatal error LNK1120: 5 unresolved externals
