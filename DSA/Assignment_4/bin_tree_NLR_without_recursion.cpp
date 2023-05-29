@@ -3,7 +3,6 @@ define
 include
 using
 std
-postOrder
 ###End banned keyword*/
 
 #include <bits/stdc++.h>
@@ -58,32 +57,21 @@ class Node {
 
 */
 
-    void postOrder(Node *root) {
+    void preOrder(Node *root) {
 //###INSERT CODE HERE -
         if (root == NULL)
             return;
-        stack < Node * >s1, s2;
-        Node *temp = root;
-        s1.push (temp);
-        // Continue till stack is empty
-        while (!s1.empty ()){
-            temp = s1.top ();
-            s1.pop ();
-            // Push the top element of first stack
-            s2.push (temp);
-            // Push the left child of the top element
-            if (temp->left != NULL)
-                s1.push (temp->left);
-            // Push the right child of the top element
-            if (temp->right != NULL)
-                s1.push (temp->right);
+        stack<Node *> nodeStack;
+        nodeStack.push(root);
+        while (nodeStack.empty() == false) {
+            Node *temp_node = nodeStack.top();
+            cout<< temp_node->data <<" ";
+            nodeStack.pop();
+            if (temp_node->right)
+            nodeStack.push(temp_node->right);
+            if (temp_node->left)
+            nodeStack.push(temp_node->left);
         }
-        // Print the second stack
-        while (!s2.empty ()){
-            cout << s2.top ()->data << " ";
-            s2.pop ();
-        }
-        cout << endl;
     }
 
 }; //End of Solution
@@ -103,7 +91,7 @@ int main() {
         root = myTree.insert(root, data);
     }
 
-    myTree.postOrder(root);
+    myTree.preOrder(root);
 
     return 0;
 }
