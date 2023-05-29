@@ -1,2 +1,2 @@
 # UIT-homework
- Some homework file (code related)
+ Some homework file
