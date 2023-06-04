@@ -9,19 +9,14 @@ struct Node{
     Node* right;
 };
 
-Node* insert(Node* node,int data){
+Node* insert(Node* node, int data){
     if(!node){
-        node = new Node;
-        node->data=data;
-        node->left=NULL;
-        node->right=NULL;
+        Node* temp = new Node;
+        temp->data=data;
+        return temp;
     }
-    if(data<node->data){
-        node->left = insert(node->left,data);
-    }
-    if(data>node->data){
-        node->right = insert(node->right,data);
-    }
+    if(data > node->data) node->right = insert(node->right,data);
+    if(data < node->data) node->left = insert(node->left,data);
     return node;
 }
 void LNR(Node* node){
@@ -31,22 +26,22 @@ void LNR(Node* node){
         LNR(node->right);
     }
 }
+
 void print_one_child_node(Node* node){
     if(node){
         print_one_child_node(node->left);
-        if((node->left!=NULL && node->right==NULL)||(node->left==NULL && node->right!=NULL))
+        if((node->left==NULL&&node->right!=NULL) || (node->left!=NULL&& node->right==NULL))
             cout<<node->data<<" ";
         print_one_child_node(node->right);
     }
 }
 
 int dem_node_la(Node* node){
-    if(!node) return 0;
-    if(node->left==NULL&&node->right==NULL) return 1;
-    else{
-        return dem_node_la(node->right) + dem_node_la(node->left);
-    }
+    if (!node) return 0;
+    if (node->left==NULL&&node->right==NULL) return 1;
+    return dem_node_la(node->left) + dem_node_la(node->right);
 }
+
 void in_node_bac_k(Node* node,int k){
     if(!node)
         return;
@@ -56,16 +51,12 @@ void in_node_bac_k(Node* node,int k){
         in_node_bac_k(node->right,k-1);
     }
 }
-Node* xoa_node_nho_nhat(Node* node){
-    if(!node){
-        return node;
-    }
-    if(node->left!=NULL){
-        node->left=xoa_node_nho_nhat(node->left);
-    }
+Node* delete_min(Node* node){
+    if(!node) return node;
+    if(node->left) node->left = delete_min(node->left);
     else{
         Node* temp = node;
-        node=node->right;
+        node = node->right;
         delete temp;
     }
     return node;
@@ -75,6 +66,7 @@ int find_max(Node* node){
         node=node->right;
     return node? node->data : -1;
 }
+
 int special_number(Node* node){
     if(!node) return 0;
     int count = (node->data/100.0<1&&node->data/10.0>=1&&int(node->data/10)*(node->data%10)+node->data%10+int(node->data/10)==node->data)? 1 : 0;
@@ -83,6 +75,7 @@ int special_number(Node* node){
     return count;
 }
 
+
 int main(){
     int k,data;cin>>k;
     Node* tree=NULL;
@@ -90,5 +83,5 @@ int main(){
         cin>>data;
         tree=insert(tree,data);
     }
-    cout<<special_number(tree);
+    print_one_child_node(tree);
 }
