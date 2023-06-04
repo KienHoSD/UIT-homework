@@ -54,19 +54,12 @@ class Node {
 
     Node * insert(Node * root, int data) {
 //###INSERT CODE HERE -
-        if(root == NULL) {
+        if(root == NULL)
             return new Node(data);
-        } 
-        else {
-            Node* cur;
-            if(data <= root->data) {
-                cur = insert(root->left, data);
-                root->left = cur;
-            } else {
-                cur = insert(root->right, data);
-                root->right = cur;
-            }
-
+        if(data < root->data)
+            root->left = insert(root->left, data);
+        if(data > root->data)
+            root->right = insert(root->right, data);
         return root;
     }
 }; 
