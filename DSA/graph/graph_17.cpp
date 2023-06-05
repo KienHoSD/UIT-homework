@@ -23,9 +23,9 @@ void Input(int v, map<string, int>& v_index, int e, vector<vector<int>>& G){
         G[v_index[nuoc1]][v_index[nuoc2]]=1;
     }
 }
-void DFS(vector<vector<int>> G, map<string,int> v_index,int v){
+void BFS(vector<vector<int>> G, map<string,int> v_index,int v){
 	string nuoc;cin>>nuoc;
-	stack<int> duyet;
+	queue<int> duyet;
 	int indexnuocdangduyet=0;
 	map<int,string> reverse_v_index;
 	map<string,int>::iterator it;
@@ -37,7 +37,7 @@ void DFS(vector<vector<int>> G, map<string,int> v_index,int v){
 	duyet.push(v_index[nuoc]);
 	vector<bool> daxet(v,false);
 	while(!duyet.empty()){
-		indexnuocdangduyet=duyet.top();
+		indexnuocdangduyet=duyet.front();
 		if(daxet[indexnuocdangduyet]==false){
 			cout<<reverse_v_index[indexnuocdangduyet]<<" ";
 			daxet[indexnuocdangduyet]=true;
@@ -57,6 +57,6 @@ int main()
 	vector<vector<int>> G (v,vector<int>(v,0)); // ma trận kề
 	map<string, int> v_index; // Danh sách ánh xạ tên đỉnh --> index
 	Input(v,v_index,e,G);
-	DFS(G,v_index,v);
+	BFS(G,v_index,v);
 	return 0;
 }
