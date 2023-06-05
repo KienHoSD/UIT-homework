@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+
 using std::string;
 using std::unordered_map;
 using std::cin;
 using std::cout;
 using std::ios;
+
 void checkUser(const unordered_map<string,string>& database,const string& tk){
     auto it = database.find(tk);
     if (it == database.end())
@@ -13,6 +15,7 @@ void checkUser(const unordered_map<string,string>& database,const string& tk){
     else 
         cout<< it->second + '\n';
 }
+
 int main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
     int n,q;

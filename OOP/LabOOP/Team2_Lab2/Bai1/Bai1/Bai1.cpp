@@ -1,321 +1,104 @@
 ﻿#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cmath>
-#include <iomanip>
+#include "graphics.h"
+#pragma comment(lib,"graphics.lib")
 using namespace std;
-struct DonThuc {
-	int BacDaThuc;
-	double HeSo;
-};
-class DaThuc {
+class Point {
 private:
-	DonThuc a;
-	vector <DonThuc> DaySo;
-
+	float tungdo;
+	float hoanhdo;
 public:
-	DaThuc();
-	void NhapDaThuc();
-	void XuatDaThuc();
-	void CongDaThuc(DaThuc B);
-	void TruDaThuc(DaThuc B);
-	DaThuc TruDaThucTravaDaThuc(DaThuc B);
-	void NhanDaThuc(DaThuc B);
-	DaThuc NhanDaThucTraveDaThuc(DaThuc B);
-	void ChiaDaThuc(DaThuc B);
-	void GiaTriDonThuc(double x);
-	DaThuc RutGonDaThuc();
+	Point();
+	~Point();
+	void NhapDiem();
+	void XuatDiem();
+	float LayHoanhDo();
+	float LayTungDo();
+	void TinhTien();
+	void VeDiem();
+	void VeTrucToaDo();
 };
-
-
-DaThuc::DaThuc() {
-	a.BacDaThuc = 0;
-	a.HeSo = 0;
+Point::~Point() {
+	getch();
+	closegraph();
 }
-
-bool Check0(const DonThuc& a) {
-	if (a.HeSo == 0) return true;
-	else return false;
-}
-bool SapXep(DonThuc a, DonThuc b) {
-	if (a.BacDaThuc > b.BacDaThuc) return true;
-	else return false;
-}
-
-DonThuc TinhThuong(const DonThuc& a, const DonThuc& b) {
-	DonThuc result;
-	result.HeSo = a.HeSo / b.HeSo;
-	result.BacDaThuc = a.BacDaThuc - b.BacDaThuc;
-	return result;
-}
-DaThuc DaThuc::RutGonDaThuc() {
-	DaThuc result;
-	sort(DaySo.begin(), DaySo.end(), SapXep);
-	for (int i = 0; i < DaySo.size(); i++) {
-		if (!Check0(DaySo[i])) {
-			result.DaySo.push_back(DaySo[i]);
-		}
+void Point::VeTrucToaDo() {
+	int TamX = int(getmaxx() / 2) + 1; // toa do x cua tam O
+	int TamY = int(getmaxy() / 2) + 1; // toa do y cua tam O
+	line(getmaxx() / 2, 0, getmaxx() / 2, getmaxy()); // Ve truc Oy
+	line(0, getmaxy() / 2, getmaxx(), getmaxy() / 2); // Ve truc Ox
+	// Ve cac cham don vi tam O
+	for (int i = TamY; i <= getmaxy(); i += 50) {
+		setfillstyle(SOLID_FILL, WHITE);
+		circle(getmaxx() / 2, i, 2);
 	}
-	return result;
-}
-void DaThuc::NhapDaThuc() {
-	DonThuc temp;
-	cout << "Nhap bac da thuc toi da cua da thuc: ";
-	cin >> a.BacDaThuc;
-	for (int i = a.BacDaThuc; i >= 0; i--) {
-		cout << "Nhap he so cua bac " << i << " : ";
-		cin >> temp.HeSo;
-		temp.BacDaThuc = i;
-		DaySo.push_back(temp);
+	for (int i = TamY; i >= 0; i -= 50) {
+		setfillstyle(SOLID_FILL, WHITE);
+		circle(getmaxx() / 2, i, 2);
+	}
+	for (int j = TamX; j <= getmaxx(); j += 50) {
+		setfillstyle(SOLID_FILL, WHITE);
+		circle(j, getmaxy() / 2, 2);
+	}
+	for (int j = TamX; j >= 0; j -= 50) {
+		setfillstyle(SOLID_FILL, WHITE);
+		circle(j, getmaxy() / 2, 2);
 	}
 }
-void DaThuc::XuatDaThuc() {
-	int cnt = 0; // counter to keep track of the number of printed terms
-	for (int i = 0; i < DaySo.size(); i++) {
-		if (DaySo[i].HeSo == 0) continue; // skip terms with zero coefficient
-		if (cnt > 0) { // not the first term
-			if (DaySo[i].HeSo > 0) { // positive coefficient
-				cout << "+ ";
-			}
-			else { // negative coefficient
-				cout << "- ";
-			}
-		}
-		else if (DaySo[i].HeSo < 0) { // first term and negative coefficient
-			cout << "-";
-		}
-		if (abs(DaySo[i].HeSo) != 1 || DaySo[i].BacDaThuc == 0) { // print the coefficient if it's not +1 or -1, or if it's a constant term
-			cout << abs(DaySo[i].HeSo);
-		}
-		if (DaySo[i].BacDaThuc > 0) { // print the variable and its exponent, if the term is not a constant
-			cout << "x";
-			if (DaySo[i].BacDaThuc > 1) {
-				cout << "^" << DaySo[i].BacDaThuc;
-			}
-		}
-		cnt++;
-	}
-	if (cnt == 0) cout << 0; // print 0 if all terms have zero coefficients
+void Point::NhapDiem() {
+	do {
+		cout << "Nhap hoanh do (x) cua diem: ";
+		cin >> hoanhdo;
+		cout << "Nhap tung do (y) cua diem: ";
+		cin >> tungdo;
+		if (hoanhdo > 11 || tungdo > 11) cout << "Nhap lai: " << '\n';
+	} while (hoanhdo > 11 || tungdo > 11);
+	VeDiem();
 }
-void DaThuc::CongDaThuc(DaThuc B) {
-	int temp;
-	DaThuc result;
-	if (this->DaySo[0].BacDaThuc > B.DaySo[0].BacDaThuc) {
-		temp = this->DaySo[0].BacDaThuc - B.DaySo[0].BacDaThuc;
-		for (int i = 0; i < temp; i++) {
-			result.DaySo.push_back(this->DaySo[i]);
-		}
-		for (int x = temp, y = 0; x < this->DaySo.size() && y < B.DaySo.size(); x++, y++) {
-			DonThuc t;
-			t.BacDaThuc = B.DaySo[y].BacDaThuc;
-			t.HeSo = this->DaySo[x].HeSo + B.DaySo[y].HeSo;
-			result.DaySo.push_back(t);
-		}
-	}
-	else if (this->DaySo[0].BacDaThuc < B.DaySo[0].BacDaThuc) {
-		temp = B.DaySo[0].BacDaThuc - this->DaySo[0].BacDaThuc;
-		for (int i = 0; i < temp; i++) {
-			result.DaySo.push_back(B.DaySo[i]);
-		}
-		for (int x = 0, y = temp; x < this->DaySo.size() && y < B.DaySo.size(); x++, y++) {
-			DonThuc t;
-			t.BacDaThuc = this->DaySo[x].BacDaThuc;
-			t.HeSo = this->DaySo[x].HeSo + B.DaySo[y].HeSo;
-			result.DaySo.push_back(t);
-		}
-	}
-	else {
-		for (int i = 0, j = 0; i < this->DaySo.size() && j < B.DaySo.size(); i++, j++) {
-			DonThuc t;
-			t.BacDaThuc = this->DaySo[i].BacDaThuc;
-			t.HeSo = this->DaySo[i].HeSo + B.DaySo[j].HeSo;
-			result.DaySo.push_back(t);
-		}
-	}
-	cout << "Tong cua hai da thuc la: ";
-	result.XuatDaThuc();
-	cout << endl;
+Point::Point() {
+	initwindow(1200, 800, "Draw a point", 50, 50, false, true);
+	tungdo = 0;
+	hoanhdo = 0;
+	VeTrucToaDo();
 }
-DaThuc DaThuc::TruDaThucTravaDaThuc(DaThuc B) {
-	DaThuc result;
-	result.a.BacDaThuc = max(this->a.BacDaThuc, B.a.BacDaThuc);
-	for (int i = result.a.BacDaThuc; i >= 0; i--) {
-		DonThuc temp;
-		temp.BacDaThuc = i;
-		int coef_this = 0, coef_B = 0;
-		for (int j = 0; j < this->DaySo.size(); j++) {
-			if (this->DaySo[j].BacDaThuc == i) {
-				coef_this = this->DaySo[j].HeSo;
-				break;
-			}
-		}
-		for (int j = 0; j < B.DaySo.size(); j++) {
-			if (B.DaySo[j].BacDaThuc == i) {
-				coef_B = B.DaySo[j].HeSo;
-				break;
-			}
-		}
-		temp.HeSo = coef_this - coef_B;
-		if (temp.HeSo != 0) {
-			result.DaySo.push_back(temp);
-		}
-	}
-	return result;
+void Point::XuatDiem() {
+	cout << "Hoanh do cua diem la: " << hoanhdo << endl;
+	cout << "Tung do cua diem la: " << tungdo << endl;
 }
-
-void DaThuc::TruDaThuc(DaThuc B) {
-	int temp;
-	DaThuc result;
-	if (this->DaySo[0].BacDaThuc > B.DaySo[0].BacDaThuc) {
-		temp = this->DaySo[0].BacDaThuc - B.DaySo[0].BacDaThuc;
-		for (int i = 0; i < temp; i++) {
-			result.DaySo.push_back(this->DaySo[i]);
-		}
-		for (int x = temp, y = 0; x < this->DaySo.size() && y < B.DaySo.size(); x++, y++) {
-			DonThuc t;
-			t.BacDaThuc = B.DaySo[y].BacDaThuc;
-			t.HeSo = this->DaySo[x].HeSo - B.DaySo[y].HeSo;
-			result.DaySo.push_back(t);
-		}
-	}
-	else if (this->DaySo[0].BacDaThuc < B.DaySo[0].BacDaThuc) {
-		temp = B.DaySo[0].BacDaThuc - this->DaySo[0].BacDaThuc;
-		for (int i = 0; i < temp; i++) {
-			B.DaySo[i].HeSo = (-1) * B.DaySo[i].HeSo;
-			result.DaySo.push_back(B.DaySo[i]);
-		}
-		for (int x = 0, y = temp; x < this->DaySo.size() && y < B.DaySo.size(); x++, y++) {
-			DonThuc t;
-			t.BacDaThuc = this->DaySo[x].BacDaThuc;
-			t.HeSo = this->DaySo[x].HeSo - B.DaySo[y].HeSo;
-			result.DaySo.push_back(t);
-		}
-	}
-	else {
-		for (int i = 0, j = 0; i < this->DaySo.size() && j < B.DaySo.size(); i++, j++) {
-			DonThuc t;
-			t.BacDaThuc = this->DaySo[i].BacDaThuc;
-			t.HeSo = this->DaySo[i].HeSo - B.DaySo[j].HeSo;
-			result.DaySo.push_back(t);
-		}
-	}
-	cout << "Hieu cua hai da thuc la: ";
-	result.XuatDaThuc();
-	cout << endl;
+float Point::LayHoanhDo() {
+	return hoanhdo;
 }
-DaThuc DaThuc::NhanDaThucTraveDaThuc(DaThuc B) {
-	DaThuc result;
-	for (int i = 0; i <= this->DaySo[0].BacDaThuc; i++) {
-		for (int j = 0; j <= B.DaySo[0].BacDaThuc; j++) {
-			DonThuc temp;
-			temp.BacDaThuc = this->DaySo[i].BacDaThuc + B.DaySo[j].BacDaThuc;
-			temp.HeSo = this->DaySo[i].HeSo * B.DaySo[j].HeSo;
-			result.DaySo.push_back(temp);
-		}
-	}
-	return result.RutGonDaThuc();
+float Point::LayTungDo() {
+	return tungdo;
 }
-void DaThuc::NhanDaThuc(DaThuc B) {
-	DaThuc Nhan, result;
-	DonThuc nhan;
-	int tem = 0;
-	bool flag = false;
-	//Nhân hai đa thức với nhau và lưu vào một mảng Nhan
-	for (int i = 0; i < this->DaySo.size(); i++) {
-		for (int j = 0; j < B.DaySo.size(); j++) {
-			DonThuc temp;
-			temp.BacDaThuc = this->DaySo[i].BacDaThuc + B.DaySo[j].BacDaThuc;
-			temp.HeSo = this->DaySo[i].HeSo * B.DaySo[j].HeSo;
-			Nhan.DaySo.push_back(temp);
-		}
-	}
-	//Sắp xếp lại mảng Nhan theo thứ tự giảm dần về số bậc để thuận tiện cho việc rút gọn đa thức
-	sort(Nhan.DaySo.begin(), Nhan.DaySo.end(), SapXep);
-	//Rút gọn lại đa thức và lưu vào mảng result.
-	for (int i = 1; i < Nhan.DaySo.size(); i++) {
-		if (Nhan.DaySo[i].BacDaThuc == Nhan.DaySo[i - 1].BacDaThuc) {
-			tem = tem + Nhan.DaySo[i].HeSo + Nhan.DaySo[i - 1].HeSo;
-			flag = true;
-		}
-		else if (Nhan.DaySo[i].BacDaThuc != Nhan.DaySo[i - 1].BacDaThuc) {
-			nhan.BacDaThuc = Nhan.DaySo[i - 1].BacDaThuc;
-			if (flag == false) nhan.HeSo = Nhan.DaySo[i - 1].HeSo;
-			else if (flag == true) nhan.HeSo = tem;
-			result.DaySo.push_back(nhan);
-			tem = 0;
-		}
-	}
-	flag = false;
-	for (size_t j = Nhan.DaySo.size() - 2;; j--) {
-		if (Nhan.DaySo[j].BacDaThuc == Nhan.DaySo[j + 1].BacDaThuc) {
-			tem = tem + Nhan.DaySo[j].HeSo + Nhan.DaySo[j + 1].HeSo;
-			flag = true;
-		}
-		else if (Nhan.DaySo[j].BacDaThuc != Nhan.DaySo[j + 1].BacDaThuc) {
-			nhan.BacDaThuc = Nhan.DaySo[j + 1].BacDaThuc;
-			if (flag == false) nhan.HeSo = Nhan.DaySo[j + 1].HeSo;
-			else if (flag == true) nhan.HeSo = tem;
-			result.DaySo.push_back(nhan);
-			break;
-		}
-	}
-	cout << "Tich 2 da thuc la: ";
-	result.XuatDaThuc();
-	cout << endl;
+void Point::TinhTien() {
+	do {
+		float x, y;
+		cout << "Nhap vecto de tinh tien: ";
+		cin >> x >> y;
+		hoanhdo = hoanhdo + x;
+		tungdo = tungdo + y;
+		if (hoanhdo > 11 || tungdo > 11) cout << "Diem tinh tien da vuot ngoai pham vi hien thi. Vui long nhap lai vecto tinh tien." << '\n';
+	} while (hoanhdo > 11 || tungdo > 11);
+	cout << "Diem sau khi da tinh tien la: " << '\n';
+	clearviewport();
+	VeTrucToaDo();
+	XuatDiem();
+	VeDiem();
 }
-void DaThuc::ChiaDaThuc(DaThuc B) {
-	DaThuc R, tempB, result; //R la ket qua, result la so du
-	tempB = B.RutGonDaThuc();
-	result = (*this).RutGonDaThuc();
-	if (tempB.DaySo[0].BacDaThuc > result.DaySo[0].BacDaThuc) {
-		cout << "Thuong cua hai da thuc la: ";
-		cout << "(("; (*this).XuatDaThuc(); cout << ")/("; B.XuatDaThuc(); cout << "))" << endl;
-	}
-	else {
-		do {
-			DaThuc TempDaThuc;
-			DonThuc temp = TinhThuong(result.DaySo[0], tempB.DaySo[0]);
-			R.DaySo.push_back(temp);
-			TempDaThuc.DaySo.push_back(temp);
-			TempDaThuc = TempDaThuc.NhanDaThucTraveDaThuc(tempB); // R * B
-			result = result.TruDaThucTravaDaThuc(TempDaThuc); //result = result - R*B
-		} while (result.DaySo[0].BacDaThuc >= tempB.DaySo[0].BacDaThuc);
-		cout << "Thuong cua hai da thuc la: " << setprecision(3);
-		R.XuatDaThuc(); cout << "+(("; result.XuatDaThuc(); cout << ")/("; tempB.XuatDaThuc(); cout << "))" << endl;
-	}
+void Point::VeDiem() {
+	int TamX = int(getmaxx() / 2) + 1;
+	int TamY = int(getmaxy() / 2) + 1;
+	//Thiet lap vi tri diem 
+	int x = int(hoanhdo * 50 + TamX);
+	int y = int(-tungdo * 50 + TamY);
+	setfillstyle(SOLID_FILL, YELLOW);
+	circle(x, y, 5);
+	floodfill(x, y, WHITE);
 }
-
-void DaThuc::GiaTriDonThuc(double x) {
-	double result = 0;
-	if (this->DaySo.size() == 0) result = 0;
-	else {
-		for (int i = 0; i < this->DaySo.size(); i++) {
-			result = result + (1.0 * this->DaySo[i].HeSo * pow(x, 1.0 * this->DaySo[i].BacDaThuc));
-		}
-	}
-	cout << result << endl;
-}
-
-
 int main()
 {
-	double x, y;
-	DaThuc A, B;
-	cout << "Nhap da thuc A(x) :" << endl;
-	A.NhapDaThuc();
-	cout << "Nhap da thuc B(x): " << endl;
-	B.NhapDaThuc();
-	A.CongDaThuc(B);
-	A.TruDaThuc(B);
-	A.NhanDaThuc(B);
-	A.ChiaDaThuc(B);
-	cout << "Nhap x de tinh gia tri cua da thuc A: ";
-	cin >> x;
-	cout << "Gia tri cua da thuc A khi x = " << x << " la: ";
-	A.GiaTriDonThuc(x);
-	cout << "Nhap x de tinh gia tri cua da thuc B: ";
-	cin >> y;
-	cout << "Gia tri cua da thuc B khi x = " << x << " la: ";
-	B.GiaTriDonThuc(y);
+	Point a;
+	a.NhapDiem();
+	a.TinhTien();
+	return 0;
 }
-

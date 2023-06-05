@@ -2,12 +2,14 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+
 using std::string;
 using std::unordered_map;
 using std::cin;
 using std::cout;
 using std::ios;
 using std::vector;
+
 void checkUser(const unordered_map<string, vector<string>>& database, const string& tk) {
     auto it = database.find(tk);
     if (it == database.end()) {
@@ -19,6 +21,7 @@ void checkUser(const unordered_map<string, vector<string>>& database, const stri
         cout << '\n';
     }
 }
+
 int main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
     int n,q;
