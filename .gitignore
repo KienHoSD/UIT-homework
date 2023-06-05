@@ -34,3 +34,6 @@
 # word and pdf
 *.docx
 *.pdf
+
+# zip file
+*.zip
