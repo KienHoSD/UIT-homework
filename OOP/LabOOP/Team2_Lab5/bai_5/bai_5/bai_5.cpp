@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cmath>
-#include "graphics.h"
 #include <vector>
 #include <algorithm>
+#include "graphics.h"
 #pragma comment(lib,"graphics.lib")
 using namespace std;
 
@@ -161,7 +161,7 @@ class chuongtrinh {
 public:
 	chuongtrinh() {
 		initwindow(1200, 800, "Ve tu giac", 50, 50);
-		(*a).VeTrucToaDo();
+		a->VeTrucToaDo();
 		int option;
 		while (true) {
 			system("CLS");
@@ -175,7 +175,7 @@ public:
 			else if (option == 4) a = &e;
 			else if (option == 5) {
 				cleardevice();
-				(*a).VeTrucToaDo();
+				a->VeTrucToaDo();
 			}
 			else if (option == 6) {
 				closegraph();

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib> // for rand() function
 #include <ctime> // for time() function
-
 using namespace std;
 
 class GiaSuc {
@@ -78,11 +77,11 @@ public:
             ds[i]= new De;
     }
     void update(int soBo,int soCuu,int soDe){
-        // Free the memory allocated to previous livestock objects
+        // giai phong bo nho cu
         for (int i = 0; i < tongsogiasuc; i++)
             delete ds[i];
         delete[] ds;
-        // Update
+        // cap nhap lai so luong bo, cuu, de
         slBo=soBo;slCuu=soCuu;slDe=soDe;
         tongsogiasuc=slBo+slCuu+slDe;
         ds = new GiaSuc*[tongsogiasuc];
@@ -132,12 +131,26 @@ int main() {
     int slBo, slCuu, slDe;
     cout << "Nhap so luong bo: ";
     cin >> slBo;
+    while(slBo<0){
+        cout<<"So luong bo khong the be hon 0\nNhap lai so luong bo: ";
+        cin>>slBo;
+    }
     cout << "Nhap so luong cuu: ";
     cin >> slCuu;
+    while(slCuu<0){
+        cout<<"So luong cuu khong the be hon 0\nNhap lai so luong cuu: ";
+        cin>>slCuu;
+    }
     cout << "Nhap so luong de: ";
     cin >> slDe;
+    while(slDe<0){
+        cout<<"So luong de khong the be hon 0\nNhap lai so luong de: ";
+        cin>>slDe;
+    }
     quanly nongtrai(slBo,slCuu,slDe);
+    // câu a
     nongtrai.tiengkeu();
+    // câu b
     nongtrai.sinhcon();
     nongtrai.laysua();
     return 0;
