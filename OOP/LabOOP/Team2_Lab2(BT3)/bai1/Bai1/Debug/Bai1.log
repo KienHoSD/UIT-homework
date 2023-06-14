@@ -1,8 +1,0 @@
-﻿  Bai1.cpp
-graphics.lib(dibutil.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(dibutil.obj)' or at ''; linking object as if no debug info
-graphics.lib(drawing.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(drawing.obj)' or at ''; linking object as if no debug info
-graphics.lib(file.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(file.obj)' or at ''; linking object as if no debug info
-graphics.lib(misc.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(misc.obj)' or at ''; linking object as if no debug info
-graphics.lib(winbgi.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(winbgi.obj)' or at ''; linking object as if no debug info
-graphics.lib(winthread.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(winthread.obj)' or at ''; linking object as if no debug info
-  Bai1.vcxproj -> C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai1\Debug\Bai1.exe
