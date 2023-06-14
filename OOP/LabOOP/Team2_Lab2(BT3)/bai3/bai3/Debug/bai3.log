@@ -1,0 +1,55 @@
+﻿  bai3.cpp
+C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai3\bai3\bai3.cpp(88,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai3\bai3\bai3.cpp(88,25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai3\bai3\bai3.cpp(175,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai3\bai3\bai3.cpp(175,22): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\utility(172,16): warning C4244: 'initializing': conversion from 'double' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty1=float
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xutility(268): message : see reference to function template instantiation 'std::pair<float,Point>::pair<double&,const Point&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=double &,
+              _Other2=const Point &
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xutility(275,56): message : see reference to function template instantiation 'std::pair<float,Point>::pair<double&,const Point&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=double &,
+              _Other2=const Point &
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector(852): message : see reference to function template instantiation 'void std::_Construct_in_place<std::pair<float,Point>,double&,const Point&>(_Ty &,double &,const Point &) noexcept' being compiled
+          with
+          [
+              _Ty=std::pair<float,Point>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector(839): message : see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<double&,const Point&>(double &,const Point &)' being compiled
+          with
+          [
+              _Ty=std::pair<float,Point>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector(845,13): message : see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<double&,const Point&>(double &,const Point &)' being compiled
+          with
+          [
+              _Ty=std::pair<float,Point>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector(925): message : see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<double&,const Point&>(double &,const Point &)' being compiled
+          with
+          [
+              _Ty=std::pair<float,Point>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector(927,14): message : see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<double&,const Point&>(double &,const Point &)' being compiled
+          with
+          [
+              _Ty=std::pair<float,Point>
+          ]
+C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai3\bai3\bai3.cpp(89,31): message : see reference to function template instantiation 'void std::vector<std::pair<float,Point>,std::allocator<std::pair<float,Point>>>::emplace_back<double&,const Point&>(double &,const Point &)' being compiled
+graphics.lib(dibutil.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(dibutil.obj)' or at ''; linking object as if no debug info
+graphics.lib(drawing.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(drawing.obj)' or at ''; linking object as if no debug info
+graphics.lib(file.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(file.obj)' or at ''; linking object as if no debug info
+graphics.lib(misc.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(misc.obj)' or at ''; linking object as if no debug info
+graphics.lib(winbgi.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(winbgi.obj)' or at ''; linking object as if no debug info
+graphics.lib(winthread.obj) : warning LNK4099: PDB '' was not found with 'graphics.lib(winthread.obj)' or at ''; linking object as if no debug info
+  bai3.vcxproj -> C:\Users\chann\Desktop\Code\OOP\LabOOP\Team2_Lab2\bai3\Debug\bai3.exe
