@@ -31,16 +31,13 @@ void Input(vector<int> &v)
 //###INSERT CODE HERE -
 void Sort(vector<int>& A){
 	if(A.empty()) return;
-	int pivot=0;
 	for(int i=0;i<A.size()-1;i++){
-		int max=A[i];
+		int max=i;
 		for(int j=i;j<A.size();j++)
-			if(A[j]>=max){
-				pivot = j;
-				max = A[j];
-			}
-		cout<<"i="<<i<<": swap ("<<A[i]<<"-"<<A[pivot]<<")\n";
-		swap(A[i],A[pivot]);
+			if(A[j]>=A[max])
+				max = j;
+		cout<<"i="<<i<<": swap ("<<A[i]<<"-"<<A[max]<<")\n";
+		swap(A[i],A[max]);
 	}
 }
 
