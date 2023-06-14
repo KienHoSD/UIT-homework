@@ -10,14 +10,12 @@ using std::vector;
 int main(){
     int n;cin>>n;
     map<int,int> arr;
-    int temp,dem=0;
+    int temp;
     for(int i =0;i<n;i++){
         cin>>temp;
         arr[temp]++;
     }
-    for(auto it=arr.begin();it!=arr.end();it++)
-        dem++;
-    cout<<dem<<'\n';
-    for(auto it=arr.begin();it!=arr.end();it++)
+    cout<<arr.size()<<'\n';
+    for(map<int,int>::iterator it=arr.begin();it!=arr.end();it++)
         cout<<it->first<<" ";
 }
