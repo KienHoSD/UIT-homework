@@ -5,9 +5,9 @@ Cài đặt cấu trúc STACK để chứa các phần tử là số nguyên t�
 Qui ước  trong stack không chứa phần tử có giá trị trùng nhau nên trước khi thêm 1 phần tử X vào stack phải kiểm tra trong stack chưa có phần tử nào có giá trị bằng X thì mới được thêm vào.
 
 VD: dãy số nguyên A gồm {1,2,3,2,1} --> trong đó có 3 giá trị là số nguyên tố 2,3,2 (số 2 xuất hiện 2 lần) nên kết quả thêm vào stack thì stack chỉ có 2 phần tử là 2 và 3
-INPUT 
+INPUT
 
-    Nhập lần lượt giá trị các phần tử của dãy số nguyên A.  
+    Nhập lần lượt giá trị các phần tử của dãy số nguyên A.
 
 OUTPUT
 
@@ -21,7 +21,7 @@ struct node {
 	int info;
 	node* next;
 };
-// Cấu trúc của một Stack 
+// Cấu trúc của một Stack
 struct Stack {
 	node* head;
 	node* tail;
@@ -48,11 +48,9 @@ void insert_node(Stack& L, int data){
 		L.tail=temp;
 		return;
 	}
-	node* prev = L.head;
-	while(prev->next)
-		prev=prev->next;
 	node* newnode = CreateNode(data);
-	prev->next = newnode;
+    newnode->next=L.head;
+	L.head=newnode;
 }
 bool isPrime(int number){
     if (number == 1)
@@ -73,15 +71,8 @@ void CreateStack(Stack& L){
     }
 }
 void PrintStack(const Stack& L){
-    if(!L.head){
-        cout<<"No SNT";
-        return;
-    }
-    node* temp = L.head;
-    while(temp){
-        cout<<temp->info<<' ';
-        temp=temp->next;
-    }
+    if(!L.head) cout<<"No SNT";
+    else for(node* temp=L.head;temp;temp=temp->next) cout<<temp->info<<" ";
 }
 int main() {
     Stack L;

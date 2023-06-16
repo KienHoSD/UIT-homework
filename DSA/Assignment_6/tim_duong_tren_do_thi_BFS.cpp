@@ -48,7 +48,7 @@ void BFS(const vector<priority_queue<int,vector<int>,greater<int>>>& matran, map
             dang_xet_queue.pop();
             // taking all side of a start point dang_xet_index then 
             // if found word2 stop
-            // else still finding until the stack is empty
+            // else still finding until the queue is empty
             while(!matrantemp[dang_xet_index].empty()){
                 if(dinh_da_xet[matrantemp[dang_xet_index].top()]==false&&previous_of_key_map.count(matrantemp[dang_xet_index].top())==0){
                     dang_xet_queue.push(matrantemp[dang_xet_index].top());

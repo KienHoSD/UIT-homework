@@ -30,11 +30,10 @@ void Input(vector<int> &v)
 
 //###INSERT CODE HERE -
 void Sort(vector<int>& A){
-	if(A.empty()) return;
 	for(int i=0;i<A.size()-1;i++){
 		int max=i;
-		for(int j=i;j<A.size();j++)
-			if(A[j]>=A[max])
+		for(int j=i+1;j<A.size();j++)
+			if(A[j]>A[max])
 				max = j;
 		cout<<"i="<<i<<": swap ("<<A[i]<<"-"<<A[max]<<")\n";
 		swap(A[i],A[max]);

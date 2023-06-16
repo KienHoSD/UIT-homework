@@ -50,7 +50,7 @@ void DFS(const vector<priority_queue<int,vector<int>,greater<int>>>& matran, map
             // if found word2 stop
             // else still finding until the stack is empty
             while(!matrantemp[dang_xet_index].empty()){
-                if(dinh_da_xet[matrantemp[dang_xet_index].top()]==false&&previous_of_key_map.count(matrantemp[dang_xet_index].top())==0){
+                if(dinh_da_xet[matrantemp[dang_xet_index].top()]==false){
                     dang_xet_stack.push(matrantemp[dang_xet_index].top());
                     previous_of_key_map.insert({matrantemp[dang_xet_index].top(),dang_xet_index});
                     if(dang_xet_stack.top()==hash_word_to_index[word2]){
@@ -61,10 +61,9 @@ void DFS(const vector<priority_queue<int,vector<int>,greater<int>>>& matran, map
                 matrantemp[dang_xet_index].pop();
             }
             if(found_word2) break;
-
         }
         // if word2 not found print no_path
-        if(!found_word2) cout<<"no_path";
+        if(!found_word2) cout<<"no_path\n";
         // else print the path 
         else{
             int index_of_reverse_word2=hash_word_to_index[word2];
